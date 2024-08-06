@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tanikazetacho/reservaweather/static/css/main.7fdb929d.css",
+    "main.js": "/tanikazetacho/reservaweather/static/js/main.1e130f7e.js",
+    "static/js/453.343eba4d.chunk.js": "/tanikazetacho/reservaweather/static/js/453.343eba4d.chunk.js",
+    "index.html": "/tanikazetacho/reservaweather/index.html",
+    "main.7fdb929d.css.map": "/tanikazetacho/reservaweather/static/css/main.7fdb929d.css.map",
+    "main.1e130f7e.js.map": "/tanikazetacho/reservaweather/static/js/main.1e130f7e.js.map",
+    "453.343eba4d.chunk.js.map": "/tanikazetacho/reservaweather/static/js/453.343eba4d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7fdb929d.css",
+    "static/js/main.1e130f7e.js"
+  ]
+}
