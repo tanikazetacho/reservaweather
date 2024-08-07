@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import List from './List';
+const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
 const Search = () => {
     const [city, setCity] = useState('');
@@ -16,7 +18,7 @@ const Search = () => {
             }
 
             const { lat, long } = places[0];
-            const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=0eebd1fcf852d29ca0340c5c451d4c9a&units=metric`);
+            const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`);
             const { list: forecast } = await weatherResponse.json();
 
             const finalTemperaturesByDays = forecast.reduce((acc, { main, dt_txt: dayWithHours }) => {
@@ -56,7 +58,7 @@ const Search = () => {
     return (
         <div className="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg w-full">
             <h1 className="flex justify-center text-2xl font-bold mb-4 text-center">
-                <img src={"logo-32x32.png"} alt={'logo'}/>eservaCLIMA
+                <img src={"/logo-32x32.png"} alt={'logo'}/>eservaCLIMA
             </h1>
             <div className="mb-4">
                 <input
@@ -76,15 +78,7 @@ const Search = () => {
             </button>
             {error && <div className="mt-4 text-red-500">{error}</div>}
             {weather && (
-                <div className="mt-4">
-                    {Object.keys(weather).map((date, index, array) => (
-                        <div key={index} className={`p-[5px] ${index === 0 ? 'bg-selected-green text-white rounded-lg' : ''} ${index < array.length - 1 ? 'border-b' : ''} `}>
-                            <p className="text-gray-700 font-bold">{convertToHumanDate(date, index === 0)}</p>
-                            <p className={` ${index === 0 ? 'text-white' : 'text-cold-blue'}`}>Temperatura Maxima: {weather[date].max}°C</p>
-                            <p className="text-hot-red">Temperatura Minima: {weather[date].min}°C</p>
-                        </div>
-                    ))}
-                </div>
+                <List weather={weather} convertToHumanDate={convertToHumanDate} />
             )}
         </div>
     );
