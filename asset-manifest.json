@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reservaweather/static/css/main.f3f5eee7.css",
-    "main.js": "/reservaweather/static/js/main.1987a6bc.js",
+    "main.js": "/reservaweather/static/js/main.c65051c6.js",
     "static/js/453.343eba4d.chunk.js": "/reservaweather/static/js/453.343eba4d.chunk.js",
     "index.html": "/reservaweather/index.html",
     "main.f3f5eee7.css.map": "/reservaweather/static/css/main.f3f5eee7.css.map",
-    "main.1987a6bc.js.map": "/reservaweather/static/js/main.1987a6bc.js.map",
+    "main.c65051c6.js.map": "/reservaweather/static/js/main.c65051c6.js.map",
     "453.343eba4d.chunk.js.map": "/reservaweather/static/js/453.343eba4d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f3f5eee7.css",
-    "static/js/main.1987a6bc.js"
+    "static/js/main.c65051c6.js"
   ]
 }
