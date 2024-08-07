@@ -58,7 +58,7 @@ const Search = () => {
     return (
         <div className="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg w-full">
             <h1 className="flex justify-center text-2xl font-bold mb-4 text-center">
-                <img src={"/logo-32x32.png"} alt={'logo'}/>eservaCLIMA
+                <img src={"logo-32x32.png"} alt={'logo'}/>eservaCLIMA
             </h1>
             <div className="mb-4">
                 <input
