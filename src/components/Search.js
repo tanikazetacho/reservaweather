@@ -4,12 +4,10 @@ import { useLocation } from 'react-router-dom';
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
 const Search = () => {
-
     const [city, setCity] = useState('');
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState(null);
     const location = useLocation();
-
 
     const handleSearch = async (cityName) => {
         try {
@@ -60,12 +58,19 @@ const Search = () => {
     }
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        const cityParam = params.get('city');
-        if (cityParam) {
-            setCity(cityParam);
-            handleSearch(cityParam);
-        }
+        const fetchData = async () => {
+            const params = new URLSearchParams(location.search);
+            const cityParam = params.get('city');
+            if (cityParam) {
+                setCity(cityParam);
+                try {
+                    await handleSearch(cityParam);
+                } catch (error) {
+                    console.error('Error handling search:', error);
+                }
+            }
+        };
+        fetchData().then(r => console.log('fetchData', r));
     }, [location]);
 
     return (
