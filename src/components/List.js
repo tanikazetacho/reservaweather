@@ -1,8 +1,6 @@
-// List.js
 import React from 'react';
 
 const List = ({ weather, convertToHumanDate }) => {
-
     return (
         <div className="mt-4">
             {Object.keys(weather).map((date, index, array) => (
