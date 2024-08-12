@@ -1,14 +1,19 @@
 // src/App.js
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Search from './components/Search';
 import './App.css';
 
 function App() {
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-            <Search />
-        </div>
-    );
+        <Router>
+            <Routes>
+                <Route path="/reservaweather" element={<Search/>}/>
+            </Routes>
+        </Router>
+
+)
+    ;
 }
 
 export default App;

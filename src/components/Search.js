@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import List from './List';
+import { useLocation } from 'react-router-dom';
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
 const Search = () => {
+
     const [city, setCity] = useState('');
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState(null);
+    const location = useLocation();
 
-    const handleSearch = async () => {
+
+    const handleSearch = async (cityName) => {
         try {
-            const response = await fetch(`https://search.reservamos.mx/api/v2/places?q=${city}`);
+            const response = await fetch(`https://search.reservamos.mx/api/v2/places?q=${cityName}`);
             const places = await response.json();
 
             if (places.length === 0) {
@@ -55,10 +59,20 @@ const Search = () => {
         return capitalizeFirstLetter(formattedDate);
     }
 
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const cityParam = params.get('city');
+        if (cityParam) {
+            setCity(cityParam);
+            handleSearch(cityParam);
+        }
+    }, [location]);
+
     return (
-        <div className="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg w-full">
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+            <div className="max-w-md mx-auto mt-10 p-4 bg-white rounded-lg shadow-lg w-full">
             <h1 className="flex justify-center text-2xl font-bold mb-4 text-center">
-                <img src={"logo-32x32.png"} alt={'logo'}/>eservaCLIMA
+                <img src={`${process.env.PUBLIC_URL}/logo-32x32.png`} alt={'logo'}/>eservaCLIMA
             </h1>
             <div className="mb-4">
                 <input
@@ -71,7 +85,7 @@ const Search = () => {
             </div>
             <button
                 disabled={!city}
-                onClick={handleSearch}
+                onClick={() => handleSearch(city)}
                 className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600"
             >
                 Dame el clima !!!
@@ -80,6 +94,7 @@ const Search = () => {
             {weather && (
                 <List weather={weather} convertToHumanDate={convertToHumanDate} />
             )}
+        </div>
         </div>
     );
 };
