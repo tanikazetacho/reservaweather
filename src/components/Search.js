@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Spinner from './SpinnerLoader';
 import List from './List';
 import { useLocation } from 'react-router-dom';
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
@@ -6,16 +7,19 @@ const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 const Search = () => {
     const [city, setCity] = useState('');
     const [weather, setWeather] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const location = useLocation();
 
     const handleSearch = async (cityName) => {
+        setLoading(true);
         try {
             const response = await fetch(`https://search.reservamos.mx/api/v2/places?q=${cityName}`);
             const places = await response.json();
 
             if (places.length === 0) {
                 setError('No encontramos la ciudad');
+                setLoading(false);
                 return;
             }
 
@@ -36,7 +40,9 @@ const Search = () => {
             setError(null);
         } catch (err) {
             setError('error fetch');
-        }
+        } finally {
+        setLoading(false);
+    }
     };
 
     const capitalizeFirstLetter = (string) => {
@@ -95,7 +101,8 @@ const Search = () => {
             >
                 Dame el clima !!!
             </button>
-            {error && <div className="mt-4 text-red-500">{error}</div>}
+            {loading && <div className="text-center mt-4 cold-blue"><Spinner/></div>}
+                {error && <div className="mt-4 text-red-500">{error}</div>}
             {weather && (
                 <List weather={weather} convertToHumanDate={convertToHumanDate} />
             )}
