@@ -102,7 +102,7 @@ const Search = () => {
                 Dame el clima !!!
             </button>
             {loading && <div className="text-center mt-4 cold-blue"><Spinner/></div>}
-                {error && <div className="mt-4 text-red-500">{error}</div>}
+            {error && <div className="mt-4 text-red-500">{error}</div>}
             {weather && (
                 <List weather={weather} convertToHumanDate={convertToHumanDate} />
             )}

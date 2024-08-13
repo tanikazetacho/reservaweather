@@ -14,7 +14,7 @@ const List = ({ weather, convertToHumanDate }) => {
                     <p className={` ${index === 0 ? 'text-white' : 'text-hot-red'}`}>
                         Temperatura Maxima: {weather[date].max}°C
                     </p>
-                    <p className="text-cold-blue">
+                    <p className={` ${index === 0 ? 'text-white' : 'text-cold-blue'}`}>
                         Temperatura Minima: {weather[date].min}°C
                     </p>
                 </div>
